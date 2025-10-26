@@ -1,0 +1,15 @@
+django==5.0.0
+djangorestframework==3.14.0
+django-cors-headers==4.3.0
+web3==6.11.0
+python-dotenv==1.0.0
+psycopg2-binary==2.9.9
+django-allauth==0.58.2
+eth-account==0.10.0
+eth-utils==2.3.0
+django-rest-auth==0.9.5
+pytest==7.4.3
+pytest-django==4.7.0
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0

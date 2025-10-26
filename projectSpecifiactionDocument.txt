@@ -1,0 +1,83 @@
+# Software Specification Document: Kommunity Koin
+
+## 1. Project Overview
+
+*   **Title:** Kommunity Koin: A User-Choice Decentralized Loan System
+*   **Short Description:** A decentralized, blockchain-agnostic platform empowering self-governing communities to create and manage their own small loan systems. It replaces traditional collateral with a dynamic on-chain reputation and offers a unique, user-choice loan approval mechanism to maximize flexibility and inclusion.
+*   **The Economic/Financial Problem Your Project Addresses:** Access to small-scale credit is often blocked by rigid, one-size-fits-all underwriting processes and high collateral requirements from traditional financial institutions. This disproportionately affects individuals within strong social networks (like gig workers, local artists, or student bodies) who possess high "social trust" but lack formal credit. Kommunity Koin digitizes and enhances community-based lending by making it transparent, globally accessible, and governed by the members themselves.
+*   **Target Users and Use-Case Scenarios:**
+    *   **Target Users:** The platform is a customizable tool for any pre-existing or new community to install and configure. This includes freelance collectives, alumni groups, neighborhood associations, and more.
+    *   **Use-Case Scenario:** A member of a "Remote Developers Guild" community needs a medium-sized loan to cover costs for a professional certification. The loan amount is too large for instant algorithmic approval. The platform presents them with two options based on community rules:
+        1.  **Community Vote:** Submit the loan for a full community vote.
+        2.  **Lending Syndicate:** Propose the loan directly to a smaller group of members who can pool funds to finance it.
+    The member, confident in their project's value, chooses to form a Lending Syndicate to get faster, more targeted funding from members who understand the value of the certification.
+*   **Technology Stack Used:**
+    *   **Blockchain Agnostic:** Initial implementation on an EVM-compatible Layer 2 (e.g., Polygon, Arbitrum) for low transaction costs, with a design that allows the core logic to be deployed on other compatible chains as chosen by the community.
+    *   **Smart Contracts:** Written in Solidity, handling all core logic including community governance, fund pooling, reputation management, and loan contract execution.
+    *   **Frontend:** A responsive Progressive Web App (PWA) using React for a seamless mobile and desktop experience.
+    *   **Identity Management:** Integration with Decentralized Identifiers (DIDs) and Verifiable Credentials (VCs) to allow for government-verifiable identity without centralized data storage.
+    *   **Wallet Integration:** Utilizes libraries like ethers.js to connect with standard Web3 wallets (MetaMask, Coinbase Wallet, etc.).
+
+## 2. Core Features and Functionality
+
+### 2.1. Community Setup & Governance
+*   **Self-Setup:** Communities can deploy their own instance of the Kommunity Koin system. During setup, they configure key parameters:
+    *   Membership contribution amounts.
+    *   Loan tier thresholds (what defines Micro, Small, Medium, Large loans).
+    *   Interest rate algorithm parameters.
+    *   Governance rules (e.g., voting duration, quorum).
+*   **Invitation-Based Membership:** New members join via an invitation from an existing member, followed by a community review process.
+*   **On-Chain Voting:** All changes to the community's rules are executed via on-chain proposals and a 1-person-1-vote system.
+
+### 2.2. On-Chain Reputation System
+*   A non-transferable reputation score is tied to each member's identity.
+*   The score is influenced by:
+    *   **Positive Factors:** Timely loan repayments, endorsing other successful members, active participation in governance.
+    *   **Negative Factors:** Loan defaults, late payments.
+
+### 2.3. Flexible Loan Approval Mechanism
+This is the core innovation. Based on the requested loan amount and the borrower's reputation, the system offers different approval paths. The borrower chooses their preferred method from the available options.
+
+| Loan Tier | Available Approval Methods (Borrower Chooses) | Description |
+| :--- | :--- | :--- |
+| **Micro** | 1. **Algorithmic Approval** | For small, urgent needs. If the borrower's reputation score is high enough, the loan is approved and disbursed instantly by the smart contract. |
+| **Small** | 1. **Algorithmic Approval** (if eligible) <br> 2. **Community Vote** | Gives the borrower a second chance via community appeal if the algorithm denies them or if they prefer a community mandate. |
+| **Medium** | 1. **Community Vote** <br> 2. **Lending Syndicate** | For significant amounts where algorithmic risk is too high. The choice is between collective community risk or targeted risk with a smaller group. |
+| **Large** | 1. **Lending Syndicate** | For the largest loans, risk must be explicitly accepted by a motivated group of lenders who pool their funds specifically for this loan, protecting the main community pool. |
+
+### 2.4. Financials
+*   **Community Pool:** Each member contributes a set amount to a common pool, which funds algorithmic and vote-approved loans.
+*   **Lending Syndicates:** For this loan type, lenders temporarily move funds from their personal wallet into a dedicated smart contract for that specific loan.
+*   **Interest & Dividends:** A small fee from the interest earned covers operational costs. The remaining interest is returned to the capital providers (either the main community pool or the syndicate members) as a dividend.
+
+### 2.5. Default and Risk Management
+*   **Automated Suspension:** In case of a default, the smart contract automatically suspends the member's borrowing rights (temporarily or permanently, based on community rules) and severely penalizes their reputation score.
+*   **Transparency:** All defaults are immutably recorded, visible to the community.
+
+## 3. Demo Video Plan (2-3 Minutes)
+
+*   **(0:00-0:30) The Problem:** Start with a relatable scenario: a freelance designer needing to buy a new laptop to take on a bigger project but lacking the collateral for a traditional loan.
+*   **(0:30-1:00) Introducing Kommunity Koin:** Show the platform dashboard. Introduce the concept of a community pool and an on-chain reputation score.
+*   **(1:00-2:00) The User-Choice Model in Action:**
+    *   **Scenario A:** The designer requests a *small* loan for a software subscription. Show the platform presenting both "Instant Algorithmic Approval" (which is successful due to their good reputation) and "Community Vote" options. They click "Instant Approval" and receive the funds.
+    *   **Scenario B:** The designer requests a *medium* loan for the laptop. Show the platform presenting "Community Vote" and "Form a Lending Syndicate" as the only options.
+*   **(2:00-2:30) The Impact:** Conclude by showing the designer successfully repaying the loan and their reputation score increasing. Summarize how Kommunity Koin puts power and choice back into the hands of the community.
+
+## 4. Source Code
+
+*   **Public Repository:** All code developed during the hackathon will be available in a public GitHub repository.
+*   **Documentation:** The repository will include a comprehensive `README.md` with:
+    *   A clear description of the project and its architecture.
+    *   Step-by-step instructions for setting up the development environment and running the application.
+    *   Detailed explanations of the core smart contracts and their functions.
+
+## 5. Team Information
+
+*   **Full Names:** [Your Name(s) Here]
+*   **Roles and Contributions:** [e.g., Jane Doe - Project Lead & Smart Contracts; John Smith - Frontend & UX/UI]
+*   **Contact Email for Primary Team Lead:** [Your Contact Email Here]
+
+## 6. (Optional) Supplementary Materials
+
+*   A slide deck will be prepared to complement the video demo, outlining the business case, market opportunity, and future roadmap.
+*   Economic research on Rotating Savings and Credit Associations (ROSCAs) and microfinance will be cited as data sources.
